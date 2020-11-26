@@ -631,7 +631,7 @@ figcaption {
       width:49%;
       height:40vh;
       margin-top:1vh;
-      background-image: url("../img/esbg4.png");
+      background-image: url("../img/esbg4.jpg");
       animation-delay: 0.5s;
     }
     #e-spo li:nth-child(4):hover{background-image: url("../img/war.gif");}
