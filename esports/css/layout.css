@@ -495,7 +495,7 @@ img {
 #mainnews .img {
   width: 40%;
   height: 40vh;
-  background-image: url("../img/mainnew.png");
+  background-image: url("../img/mainnew.jpg");
   background-size: cover;
   transition: 0.5s;
 }
@@ -505,7 +505,7 @@ img {
 }
 
 #mainnews:hover .img {
-  background-image: url("../img/mainnew2.png");
+  background-image: url("../img/mainnew2.jpg");
 }
 
 #mainnews span {

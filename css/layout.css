@@ -650,9 +650,9 @@ figcaption {
             background-position: center;}
 
   #news div, #news span{float:left;}
-  .new1 div {background-image: url("../img/new1.png");}
-  .new2 div, .new2-m div {background-image: url("../img/new2.png");}
-  .new3 div {background-image: url("../img/new3.png");}
+  .new1 div {background-image: url("../img/new1.jpg");}
+  .new2 div, .new2-m div {background-image: url("../img/new2.jpg");}
+  .new3 div {background-image: url("../img/new3.jpg");}
 
   #news span{width:45%;font-size: 40px;line-height: 55px;
     margin-top: 15vh;margin-left:  5%}
