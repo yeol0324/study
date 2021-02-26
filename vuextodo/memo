@@ -1,0 +1,9 @@
+항상 오타 주의!!
+
+mutation 에서 바로 data값 변경 불가 > state 사용해서 변경하기
+
+this.$store.commit('함수명', 데이터})
+
+chrome app 중 vue devtools 도 사용해보기
+
+mutation 을 사용하는 이유 중 하나는 디버깅을 쉽게 할 수 있다 ()

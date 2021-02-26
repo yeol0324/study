@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 
 export default new Vuex.Store({
-    // actions 에서 서버에 비동기로 데이터베이스를 업데이트, 완료 후 matations을 통해 data 업테이트
+    // actions 에서 서버에 비동기로 데이터베이스를 업데이트, 완료 후 mutations을 통해 data 업테이트
     state: {
         // data
         todos: [
@@ -38,7 +38,16 @@ export default new Vuex.Store({
     },
     actions: {
         // 함수, 비동기적인 일 처리 > matations 한테 data 바꿔달라고 요청 (methods 와 비슷)
-
+        //actions를 사용할 땐 dispatch를 사용
+        // addTodo(context, value) {
+        // }
+        addTodo({ commit }, value) {
+            //여기에 비동기 작업
+            setTimeout(function() {
+                commit('ADD_TODO', value);
+            }, 2000);
+            
+        }
     },
     getters: {
         //computed와 비슷
