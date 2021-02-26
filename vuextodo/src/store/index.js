@@ -14,8 +14,27 @@ export default new Vuex.Store({
             { id: 2, text: 'play game', checked: false }
           ]
     },
-    matations: {
+    mutations: {
         // 실질적으로 data를 바꿈
+        ADD_TODO(state, value) {
+            state.todos.push({
+                id: Math.random(),
+                text: value,
+                checked: false
+            })
+        },
+        TOGGLE_TODO(state, {id, checked}) {
+            const index = state.todos.findIndex(todo => {
+                return todo.id === id;
+              });
+              state.todos[index].checked = checked;
+        },
+        DELETE_TODO(state, todoId) {
+                const index = state.todos.findIndex(todo => {
+                  return todo.id === todoId;
+                });
+                state.todos.splice(index, 1);
+        }
     },
     actions: {
         // 함수, 비동기적인 일 처리 > matations 한테 data 바꿔달라고 요청 (methods 와 비슷)
