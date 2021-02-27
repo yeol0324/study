@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
       { id: 1, text: "learn vue", checked: false },
       { id: 2, text: "play game", checked: false },
     ],
+    users: [],
   },
   mutations: {
     // 실질적으로 data를 바꿈
@@ -33,6 +35,9 @@ export default new Vuex.Store({
       });
       state.todos.splice(index, 1);
     },
+    SET_USERS(state, users) {
+      state.users = users;
+    },
   },
   actions: {
     // 함수, 비동기적인 일 처리 > matations 한테 data 바꿔달라고 요청 (methods 와 비슷)
@@ -54,6 +59,11 @@ export default new Vuex.Store({
       setTimeout(function () {
         commit("DELETE_TODO", todoId);
       }, 500);
+    },
+    getUsers({ commit }) {
+      axios.get("https://jsonplaceholder.typicode.com/users").then( res => {
+        commit("SET_USERS", res.data);
+      });
     },
   },
   getters: {
