@@ -52,7 +52,7 @@ export default new Vuex.Store({
     },
     toggleTodo({ commit }, payload) {
       setTimeout(function () {
-        commit("ADD_TODO", payload);
+        commit("TOGGLE_TODO", payload);
       }, 500);
     },
     deleteTodo({ commit }, todoId) {
@@ -68,5 +68,8 @@ export default new Vuex.Store({
   },
   getters: {
     //computed와 비슷
+    numberOfCompletedTodo: state => {
+      return state.todos.filter(todo => todo.checked).length;
+    }
   },
 });

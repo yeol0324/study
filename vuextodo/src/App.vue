@@ -5,6 +5,7 @@
     <AddTodo />
     <hr />
     <TodoList />
+    {{ numberOfCompletedTodo }}
     <UserList />
   </div>
 </template>
@@ -22,6 +23,12 @@ export default {
     AddTodo,
     CompletedTodo,
     UserList
+  },
+  computed: {
+    numberOfCompletedTodo() {
+      return this.$store.getters.numberOfCompletedTodo;
+      //getters 를 사용해서 계산된 값을 바로 불러올 수 있음!
+    }
   }
 }
 </script>
