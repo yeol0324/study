@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>복습 - 끝말있기</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{word}}</div>
+        <form v-on:submit="onSubmit">
+            <input type="text" ref="answer" v-model="value">
+            <button type="submit">입력!</button>
+        </form>
+        <div>{{resault}}</div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                word: '콜라',
+                resault: '',
+                value: ''
+            },
+            methods: {
+                onSubmit(e) {
+                    e.preventDefault();
+                    if (this.word[this.word.length - 1] === this.value[0]) {
+                        this.resault = '정답!';
+                        this.word = this.value;
+                        this.value = '';
+                        this.$refs.answer.focus();
+                    } else {
+                        this.resault = '땡';
+                        this.value = '';
+                        this.$refs.answer.focus();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
