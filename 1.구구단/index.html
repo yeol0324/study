@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>문제</title>
+</head>
+<body>
+    <div id="app">
+        <div>{{first}}더하기 {{second}}는?</div>
+        <form v-on:submit="onClickSubmit">
+            <input type="number" ref="answer" v-model="value">
+            <button type="submit">Submit</button>
+        </form>
+        <div id="resault">{{resault}}</div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            first: Math.ceil(Math.random() * 9),
+            second: Math.ceil(Math.random() * 9),
+            value: '',
+            resault: '',
+        },
+        methods: {
+            onClickSubmit(e) {
+                e.preventDefault();
+                if (this.first + this.second === parseInt(this.value)) {
+                    this.resault = '정답';
+                    this.first = Math.ceil(Math.random() * 9);
+                    this.second = Math.ceil(Math.random() * 9);
+                    this.value = '';
+                    this.$refs.answer.focus();
+                } else {
+                    this.resault = '땡';
+                    this.value = '';
+                    this.$refs.answer.focus();
+                }
+            }
+        }
+    })
+</script>
+</html>
