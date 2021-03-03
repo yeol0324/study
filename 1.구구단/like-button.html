@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>좋아요</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div v-if="liked">좋아요 눌렀음</div>
+        <!-- v-if/v-else true일 때 값 출력, false일 때 숨김 v-if/v-else 는 형제로 붙어있어야함-->
+        <!-- v가 붙은 속성 따옴표 안에는 자바스크립트 코드 쓸 수 있음 접근은 data/methos -->
+        <button v-else v-on:click="onClickButton" >Like</button>
+        <!-- v-on:click이라고 입력해야 뷰가 통제하는 메소드와 연결이 됨 -->
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#root',
+        data: {
+            liked: false,
+            //button을 눌렀는지 안 눌렀는지 판단하는 데이터 ( 바뀌는 값 )
+
+            //바뀌는 값을 data로 만들어 주기
+        },
+        methods: {
+            onClickButton() {
+                this.liked = true;
+                //this는 data를 가르킴 ( data의 liked를 true로 변경하는 함수)
+            },
+            onClick() {
+
+            },
+        },
+    });
+</script>
+</html>
