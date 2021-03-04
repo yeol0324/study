@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>컴포넌트 사용 끝말잇기</title>
+</head>
+<body>
+    <div id="root">
+        <word-relay />
+    </div>
+</body>
+<script>
+    Vue.component('word-relay', {
+        template:`
+        <div>{{word}}</div>
+        <form v-on:submit="onSubmit">
+            <input type="text" ref="answer" v-model="value">
+            <button type="submit">입력!</button>
+        </form>
+        <div>{{resault}}</div>
+        `,
+        //컴포넌트를 할 때는 data가 달라진다
+        data: {
+
+        },
+        methods: {
+
+        }
+    });
+</script>
+<script>
+    new Vue({
+        el: '#root',
+        data: {
+            word: '초밥',
+            resault: '',
+            value: '',
+        },
+        methods: {
+            onSubmit(e) {
+                e.preventDefault();
+            }
+        }
+    });
+</script>
+</html>
