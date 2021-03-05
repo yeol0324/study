@@ -9,41 +9,59 @@
 </head>
 <body>
     <div id="root">
-        <word-relay />
+        <word-relay start-word="햄스터"></word-relay>
+        <word-relay start-word="눈사람"></word-relay>
+        <word-relay start-word="레킹볼"></word-relay>
+        <!-- 컴포넌트는 같은 것을 계속 랜더링하지만 중복을 제거하는데 데이터들은 다 각자 다름 -->
+        <!-- 컴포넌트가 중복돼도 다 다른 데이터를 받기 때문에 하나의 독립적인 것으로 생각 -->
+        <!-- *랜더링* 화면 표시 -->
+        <!-- 컴포넌트는 인스턴스보다 위 // 스크립트는 div#root 보다 아래 -->
     </div>
-</body>
-<script>
-    Vue.component('word-relay', {
-        template:`
-        <div>{{word}}</div>
-        <form v-on:submit="onSubmit">
-            <input type="text" ref="answer" v-model="value">
-            <button type="submit">입력!</button>
-        </form>
-        <div>{{resault}}</div>
-        `,
-        //컴포넌트를 할 때는 data가 달라진다
-        data: {
-
-        },
-        methods: {
-
-        }
-    });
-</script>
-<script>
-    new Vue({
-        el: '#root',
-        data: {
-            word: '초밥',
-            resault: '',
-            value: '',
-        },
-        methods: {
-            onSubmit(e) {
-                e.preventDefault();
+    <script>
+        Vue.component('word-relay', { // 전역컴포넌트
+            //처음부터 화면이 정해져있고 데이터를 바꾸면서 랜더링하기 때문에 컴포넌트를 만든다고 해서 서버에 부담이 줄어든다거나 하는 건 아님
+            template:`
+            <div>
+                <div>{{word}}</div>
+                <form v-on:submit='onSubmit'>
+                    <input type='text' ref='answer' v-model='value'>
+                    <button type='submit'>입력!</button>
+                </form>
+                <div>{{resault}}</div>
+            </div>
+            `,
+            //컴포넌트를 할 때는 data가 달라진다
+            //컴포넌트에서 data 사용하려면 함수로 만들어줘야함 () { return{} }
+            props: ['startWord'],
+            //props html에 적을 때에는 케밥케이스로 적어야함 (start-word)
+            data() {
+                return {
+                    word: this.startWord,
+                    resault: '',
+                    value: '',
+                };       
+            },
+            methods: {
+                onSubmit(e) {
+                    e.preventDefault();
+                    if (this.word[this.word.length - 1] === this.value[0]) {
+                        this.resault = '정답';
+                        this.word = this.value;
+                        this.value = '';
+                    } else {
+                        this.resault = '땡';
+                        this.value = '';
+                    }
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
+    <script>
+        new Vue({
+            el: '#root',
+    
+        });
+    </script>
+</body>
+
 </html>
