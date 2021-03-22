@@ -6,7 +6,9 @@
             <button type>입력</button>
         </form>
         <div>시도: {{}}</div>
-        
+        <ul>
+            <li></li>
+        </ul>
     </div>
 </template>
 
