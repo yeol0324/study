@@ -1,15 +1,23 @@
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require('path');
 
 module.exports = {
+    mode: 'development',
+    devtool: 'eval',
+    resolve: {
+        extensions: ['.js','.vue']
+    },
     entry: {
         app: './main.js', //app > 하나로 합쳐질 파일의 이름 path.join(__dirname, 'app.js') 로 사용 가능
     },
     module: {//웹팩의 핵심
         rules: [{ //수백개 수천개의 자바스크립트 파일을 합칠 때 어떻게 처리할 건지 입력
-
+            test: /\.vue$/,
+            loader: 'vue-loader',
         }],
     },
     plugins: [
+        new VueLoaderPlugin(),
 
     ],
     output: {
