@@ -4,9 +4,9 @@
         <div>
             <div>평균시간 : {{resault.reduce((a, c) => a + c, 0) / resault.length || 0}}ms</div>
             <button @click="onReset">리셋</button>
-            <li v-for="r in resaults">
-                <div>{{r.resault}}</div>
-            </li>
+
+                <div>{{resault}}</div>
+
         </div>
     </div>
 </template>
