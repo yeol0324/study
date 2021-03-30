@@ -1,10 +1,10 @@
 {
-  "name": "number-baseball",
+  "name": "response-check",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --watch"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +16,7 @@
     "vue-template-compiler": "^2.6.12"
   },
   "devDependencies": {
-    "webpack": "^5.24.3",
+    "webpack": "^5.28.0",
     "webpack-cli": "^4.5.0"
   }
 }
