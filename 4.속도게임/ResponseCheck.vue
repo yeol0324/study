@@ -1,12 +1,12 @@
 <template>
     <div>
+        <div id="popup">개빨라~!~!</div>
         <div id="screen" :class="state" @click="onClickScreen"><b>{{message}}</b></div>
         <div>
-            <div>평균시간 : {{resault.reduce((a, c) => a + c, 0) / resault.length || 0}}ms</div>
+            <div>평균시간 : {{average}}ms</div>
+            <!-- {{}}사이는 데이터를 텍스트로 넣는 부분, 계산은 최대한 이곳에서 하지 말고 computed속성에서 하기 -->
             <button @click="onReset">리셋</button>
-
-                <div>{{resault}}</div>
-
+            <div>{{resault}}</div>
         </div>
     </div>
 </template>
@@ -25,6 +25,13 @@ export default {
         }
         
     },
+    computed: {
+        average() {
+            return this.resault.reduce((a, c) => a + c, 0) / resault.length || 0
+        }
+    },
+    //data, computed 차이 (일반 데이터를 가공해서 쓰고 싶을 때 computed를 사용)
+    //computed사용하는 이유 = cashing이 되기 때문에!! (ex. 다른 관련이 없는 데이터가 바뀌면 기존에 캐싱 된 컴퓨티드가 다시 사용됨,,, 불필요한 계산을 또 안 할 수 있음 )
     methods: {
         onReset() {
             this.resault = []
