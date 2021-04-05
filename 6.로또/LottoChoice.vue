@@ -24,7 +24,7 @@ function getWinNumbers() {
     const winNumbers = shuffle.slice(0, 6).sort((p, c) => p - c);
     return [...winNumbers, bonusNumber];
 }
-
+const timeouts = [];
 export default {
     components: {
         'lotto-ball': LottoBall
@@ -51,11 +51,12 @@ export default {
         },
         showBalls() {
             for (let i = 0; i < this.winNumbers.length - 1; i++) {
-                setTimeout (() => {
+                timeouts[i] =setTimeout (() => {
+                    // 화면이 멈추면(사라지면) 메모리 누수
                     this.winBalls.push(this.winNumbers[i]);
                 }, (i + 1) * 1000);
             }
-            setTimeout(() => {
+            timeouts[6] = setTimeout(() => {
                 this.bonus = this.winNumbers[6];
                 this.redo = true;
             }, 7000)
@@ -65,7 +66,9 @@ export default {
         this.showBalls();
     },
     beforeDestroy() {
-
+        timeouts.forEach((t) => {
+            clearTimeout(t);
+        });
     },
     watch: {
 
