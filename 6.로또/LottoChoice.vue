@@ -71,8 +71,15 @@ export default {
         });
     },
     watch: {
-
+        // 값이 바뀌었는지 확인
+        // winBalls(value, oldValue) {
+        //     if(value.length === 0) { // winBalls가 빈 배열이 될 때
+        //         this.showBalls();
+        //     }
+        // }
+        // watch는 남발하지 말 것...
     },
+    //data, props가 바뀌었을 때 computed는 값을 return / watch는 특정 동작을 수행
 };
 </script>
 
