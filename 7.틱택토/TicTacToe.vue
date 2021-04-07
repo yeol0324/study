@@ -1,6 +1,7 @@
 <template>
     <div>
-        <table-component></table-component>
+        <table-component :table-data="tableData"></table-component>
+        <div> {{ turn }} 님의 턴입니다.</div>
     </div>
 </template>
 
@@ -13,7 +14,12 @@ export default {
     },
     data() {
         return {
-
+            tableData: [
+                ['', '', ''],
+                ['', '', ''],
+                ['', '', '']
+            ],
+            turn: 'O',
         };        
     },
     computed: {
@@ -32,5 +38,8 @@ export default {
 </script>
 
 <style scoped>
-
+    table {
+        border-collapse: collapse;
+    }
+    
 </style>
