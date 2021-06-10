@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <style>
+            li {
+                list-style: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button>button</button>
+        <ul class="list"></ul>
+        <select name="select" id="select">
+            <option value="all">전체</option>
+        </select>
+        <ul id="result"></ul>
+    </body>
+
+    <script>
+        let button = document.querySelector("button");
+
+        button.addEventListener("click", test);
+
+        var x = new XMLHttpRequest();
+        x.open("GET", "https://yeol0324.github.io/markgonzales/"); //데이터를 로드해올 URL
+        x.send();
+
+        function test() {
+            if (x.readyState == "4") {
+                //x의 데이터로드가 완료 되었을 때.
+                console.log("complete road"); //데이터 로드 완료 출력.
+
+                let i; //반복문돌리기용 변수 선언
+                var el = document.createElement("el"); //el이라는 엘리먼트 선언.
+
+                el.innerHTML = x.responseText; // el 엘리먼트 안에 아까 x가 받아온 respontext삽입.
+                console.log(el);
+                console.log(el.querySelector("img"));
+
+                for (i = 0; i < el.querySelector("img").length; i++) {
+                    //card-title클래스가 발견된 개수만큼 반복
+                    console.log(el.querySelector("img")[i]);
+                    // document.writeln(el.querySelector("img")[i].innerText + "<br>");
+                    // 화면에 card-title클래스에 있는 Text를 출력후 줄바꿈.
+                }
+            } else {
+                console.log("loading"); //데이터 로드 미완료시 로딩표시
+            }
+        }
+
+        function imgFind() {}
+        // const input = document.querySelector("input");
+        // const preview = document.querySelector(".file_list");
+
+        // let files = new Array();
+        // let firstbox = new Array();
+        // let select = document.querySelector("select");
+
+        // input.addEventListener("change", showTextFile);
+
+        // function showTextFile() {
+        //     files = input.files;
+
+        //     const list = document.createElement("ul");
+        //     preview.appendChild(list);
+
+        //     for (var file of files) {
+        //         firstbox.push(file.name.charAt(0));
+        //         const listItem = document.createElement("li");
+        //         listItem.textContent = file.name;
+        //         list.appendChild(listItem);
+        //     }
+
+        //     // 중복 값 제거
+        //     uniqueArr = [...new Set(firstbox)];
+
+        //     for (var i = 0; i < uniqueArr.length; i++) {
+        //         let select = document.querySelector("select");
+        //         let option = new Option();
+        //         option.value = uniqueArr[i];
+        //         select.appendChild(option);
+        //         option.innerHTML += uniqueArr[i];
+        //     }
+        // }
+
+        // select.addEventListener("change", showSelectBox);
+
+        // function showSelectBox() {
+        //     files = input.files;
+        //     const result = document.getElementById("result");
+        //     let val = select.options[select.selectedIndex].value;
+
+        //     // result 데이터 초기화
+        //     while (result.hasChildNodes()) {
+        //         result.removeChild(result.firstChild);
+        //     }
+
+        //     // option 값 == 파일명
+        //     for (var i = 0; i < files.length; i++) {
+        //         let first_char = files[i].name.charAt(0);
+
+        //         if (val == first_char) {
+        //             const listItem = document.createElement("li");
+        //             listItem.textContent = files[i].name;
+        //             result.appendChild(listItem);
+        //             const img = document.createElement("img");
+        //             img.setAttribute("src", "./img/" + files[i].name);
+        //             result.appendChild(img);
+        //         }
+        //     }
+        // }
+    </script>
+</html>
