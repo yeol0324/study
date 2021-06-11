@@ -15,6 +15,7 @@
 
     <body>
         <button>button</button>
+        <button onclick="showTextFile()">files</button>
         <ul class="list"></ul>
         <select name="select" id="select">
             <option value="all">전체</option>
@@ -24,96 +25,95 @@
 
     <script>
         let button = document.querySelector("button");
+        var el = document.createElement("el");
+        let files = new Array();
+        let imgNames = new Array();
+        let filesname;
 
         button.addEventListener("click", test);
 
         var x = new XMLHttpRequest();
-        x.open("GET", "https://yeol0324.github.io/markgonzales/"); //데이터를 로드해올 URL
+        x.open("GET", "https://yeol0324.github.io/vueProject/ww/img.html"); //데이터를 로드해올 URL
         x.send();
 
         function test() {
             if (x.readyState == "4") {
-                //x의 데이터로드가 완료 되었을 때.
-                console.log("complete road"); //데이터 로드 완료 출력.
-
-                let i; //반복문돌리기용 변수 선언
-                var el = document.createElement("el"); //el이라는 엘리먼트 선언.
+                let i;
 
                 el.innerHTML = x.responseText; // el 엘리먼트 안에 아까 x가 받아온 respontext삽입.
                 console.log(el);
-                console.log(el.querySelector("img"));
 
-                for (i = 0; i < el.querySelector("img").length; i++) {
-                    //card-title클래스가 발견된 개수만큼 반복
-                    console.log(el.querySelector("img")[i]);
-                    // document.writeln(el.querySelector("img")[i].innerText + "<br>");
-                    // 화면에 card-title클래스에 있는 Text를 출력후 줄바꿈.
+                var img = el.querySelector("img");
+
+                console.log(img.getAttribute("src"));
+
+                for (i = 0; i < el.querySelectorAll("img").length; i++) {
+                    files.push(el.querySelectorAll("img")[i].getAttribute("src"));
                 }
-            } else {
-                console.log("loading"); //데이터 로드 미완료시 로딩표시
+                console.log(files);
+                for (file of files) {
+                    filesname = file.split("/");
+                    imgNames.push(filesname[filesname.length - 1]);
+                    // 이미지 파일명
+                    console.log(imgNames);
+                }
             }
         }
 
-        function imgFind() {}
-        // const input = document.querySelector("input");
-        // const preview = document.querySelector(".file_list");
+        // 파일 첫번째 이름 가져와서 중복 제거해서 보여주기
+        let firstbox = new Array();
 
-        // let files = new Array();
-        // let firstbox = new Array();
-        // let select = document.querySelector("select");
+        function showTextFile() {
+            const preview = document.querySelector(".list");
+            const list = document.createElement("ul");
+            preview.appendChild(list);
 
-        // input.addEventListener("change", showTextFile);
+            for (var imgName of imgNames) {
+                const listItem = document.createElement("li");
+                listItem.textContent = imgName;
+                list.appendChild(listItem);
+                // 첫번째 글자 따오기
+                firstbox.push(imgName.charAt(0));
+            }
 
-        // function showTextFile() {
-        //     files = input.files;
+            // 중복 값 제거
+            uniqueArr = [...new Set(firstbox)];
 
-        //     const list = document.createElement("ul");
-        //     preview.appendChild(list);
+            for (var i = 0; i < uniqueArr.length; i++) {
+                let select = document.querySelector("select");
+                let option = new Option();
+                option.value = uniqueArr[i];
+                select.appendChild(option);
+                option.innerHTML += uniqueArr[i];
+            }
+        }
 
-        //     for (var file of files) {
-        //         firstbox.push(file.name.charAt(0));
-        //         const listItem = document.createElement("li");
-        //         listItem.textContent = file.name;
-        //         list.appendChild(listItem);
-        //     }
+        let select = document.querySelector("select");
+        // selectbox 선택 시 맞는 데이터 보이기
+        select.addEventListener("change", showSelectBox);
 
-        //     // 중복 값 제거
-        //     uniqueArr = [...new Set(firstbox)];
+        function showSelectBox() {
+            console.log(files);
+            // selectbox 선택 값
+            let val = select.options[select.selectedIndex].value;
+            const result = document.getElementById("result");
 
-        //     for (var i = 0; i < uniqueArr.length; i++) {
-        //         let select = document.querySelector("select");
-        //         let option = new Option();
-        //         option.value = uniqueArr[i];
-        //         select.appendChild(option);
-        //         option.innerHTML += uniqueArr[i];
-        //     }
-        // }
+            // result 데이터 초기화
+            while (result.hasChildNodes()) {
+                result.removeChild(result.firstChild);
+            }
 
-        // select.addEventListener("change", showSelectBox);
-
-        // function showSelectBox() {
-        //     files = input.files;
-        //     const result = document.getElementById("result");
-        //     let val = select.options[select.selectedIndex].value;
-
-        //     // result 데이터 초기화
-        //     while (result.hasChildNodes()) {
-        //         result.removeChild(result.firstChild);
-        //     }
-
-        //     // option 값 == 파일명
-        //     for (var i = 0; i < files.length; i++) {
-        //         let first_char = files[i].name.charAt(0);
-
-        //         if (val == first_char) {
-        //             const listItem = document.createElement("li");
-        //             listItem.textContent = files[i].name;
-        //             result.appendChild(listItem);
-        //             const img = document.createElement("img");
-        //             img.setAttribute("src", "./img/" + files[i].name);
-        //             result.appendChild(img);
-        //         }
-        //     }
-        // }
+            for (var i = 0; i < imgNames.length; i++) {
+                let first_char = imgNames[i].charAt(0);
+                if (val == first_char) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = imgNames[i];
+                    result.appendChild(listItem);
+                    const img = document.createElement("img");
+                    img.setAttribute("src", files[i]);
+                    result.appendChild(img);
+                }
+            }
+        }
     </script>
 </html>
