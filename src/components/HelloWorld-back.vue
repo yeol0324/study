@@ -135,7 +135,7 @@ onMounted(async () => {
     //     requestAnimationFrame(recognize);
     //   }, 1000);
   };
-  // // requestAnimationFrame(recognize);
+  requestAnimationFrame(recognize);
 
   Promise.all([loadModels(), startVideo()]).then(() => {
     video.value.addEventListener("play", recognize);
