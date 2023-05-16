@@ -2,7 +2,10 @@
   <h1>{{ eyeOut }}</h1>
   <button @click="startEvent">시작</button>
   <button @click="removeEvent">멈춤</button>
-  left :: {{ leftEyeClose }} right :: {{ rightEyeClose }}
+  <br />left :: {{ leftEyeClose }} <br />right :: {{ rightEyeClose }}
+  <br />leftWidthe::{{ leftWidth }} <br />rightWidthe :: {{ rightWidth }}
+  <br />left :: {{ leftWidth / leftEyeClose }} <br />rightWidthe ::
+  {{ rightWidth / rightEyeClose }}
   <div style="position: relative">
     <video
       ref="video"
@@ -31,6 +34,8 @@ let myReq;
 let timerVar;
 const leftEyeClose = ref(0);
 const rightEyeClose = ref(0);
+const leftWidth = ref(0);
+const rightWidth = ref(0);
 const eyeOut = ref(0);
 const reqTime = ref(true);
 const video = ref("video");
@@ -86,16 +91,20 @@ const recognize = async () => {
   detections.forEach((detection) => {
     // 랜드마크를 사용하여 양쪽 눈에 대한 포인트 추출
     console.log(detection);
-    // const landmarks = detection.landmarks;
-    // const leftEye = landmarks.getLeftEye();
-    // const rightEye = landmarks.getRightEye();
+    const landmarks = detection.landmarks;
+    const leftEye = landmarks.getLeftEye();
+    const rightEye = landmarks.getRightEye();
     // // 각 눈의 세로축 길이 계산
-    // const leftEyeCloses =
-    //   (leftEye[4].y - leftEye[1].y + (leftEye[5].y - leftEye[2].y)) / 2;
-    // const rightEyeCloses =
-    //   (rightEye[4].y - rightEye[1].y + (rightEye[5].y - rightEye[2].y)) / 2;
-    // leftEyeClose.value = leftEyeCloses;
-    // rightEyeClose.value = rightEyeCloses;
+    const leftEyeCloses =
+      (leftEye[4].y - leftEye[2].y + (leftEye[5].y - leftEye[1].y)) / 2;
+    const rightEyeCloses =
+      (rightEye[4].y - rightEye[2].y + (rightEye[5].y - rightEye[1].y)) / 2;
+    const leftWidthe = leftEye[3].x - leftEye[1].x;
+    const rightWidthe = rightEye[3].x - rightEye[1].x;
+    leftEyeClose.value = leftEyeCloses;
+    rightEyeClose.value = rightEyeCloses;
+    leftWidth.value = leftWidthe;
+    rightWidth.value = rightWidthe;
   });
 
   if (!reqTime.value) {
