@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap");
-@import "../../styles/breakpoints.scss";
+// @import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap");
+// @import "../../styles/breakpoints.scss";
 
 .container {
   display: flex;
@@ -8,12 +8,12 @@
   font-size: 14px;
   padding-top: 20px;
 
-  @include md {
-    align-items: center;
-    flex-direction: row;
-    padding-top: 0px;
-    height: 90px;
-  }
+  // @include md {
+  //   align-items: center;
+  //   flex-direction: row;
+  //   padding-top: 0px;
+  //   height: 90px;
+  // }
 
   .logoContainer {
     font-family: "Sansita Swashed", cursive;
@@ -23,10 +23,10 @@
     display: flex;
     align-items: center;
 
-    @include md {
-      font-size: 32px;
-      width: 210px;
-    }
+    // @include md {
+    //   font-size: 32px;
+    //   width: 210px;
+    // }
 
     .rightContentMobile {
       display: flex;
@@ -35,9 +35,9 @@
         "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
         "Helvetica Neue", sans-serif;
       margin-top: 8px;
-      @include md {
-        display: none;
-      }
+      // @include md {
+      //   display: none;
+      // }
 
       //mobile cart container
       .cartContainer {
@@ -79,12 +79,12 @@
     margin-top: 20px;
     padding: 10px;
 
-    @include md {
-      border: none;
-      box-shadow: none;
-      margin-top: 0px;
-      padding: 0px;
-    }
+    // @include md {
+    //   border: none;
+    //   box-shadow: none;
+    //   margin-top: 0px;
+    //   padding: 0px;
+    // }
 
     form {
       width: 100%;
@@ -109,9 +109,9 @@
     display: none;
     font-weight: bold;
     margin-left: auto;
-    @include md {
-      display: flex;
-    }
+    // @include md {
+    //   display: flex;
+    // }
 
     .cartContainer {
       display: flex;
@@ -228,9 +228,9 @@
       cursor: pointer;
       border: 0;
 
-      @include md {
-        display: none;
-      }
+      // @include md {
+      //   display: none;
+      // }
     }
   }
 }
