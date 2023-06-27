@@ -12,6 +12,7 @@ const CancelToken = axios.CancelToken;
 const source = CancelToken.source();
 instance.interceptors.request.use(
   (config: AxiosRequestConfig | any) => {
+    console.log(config);
     const token = localStorage.getItem("token");
     const r_token = localStorage.getItem("refreshToken");
     const key = `${config.url}$${JSON.stringify(config.data)}`;

@@ -15,6 +15,18 @@ const nextConfig = {
     ],
     format: ["image/png", "image/webp", "image/jpeg"],
   },
+  assetPrefix:
+    process.env.NODE_ENV === "production"
+      ? "https://yeol0324.github.io/next"
+      : "",
+  async rewrites() {
+    return [
+      {
+        source: "/v1/:path*",
+        destination: "https://yeol0324.github.io/next/:path*",
+      },
+    ];
+  },
 };
 
 async function initialize() {

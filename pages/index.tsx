@@ -3,8 +3,6 @@ import ProjectItem from "../components/Common";
 import CounterContainer from "@/store/store";
 import axios from "@/utils/axios";
 export default function home({ userList }: any) {
-  console.log(userList);
-
   return (
     <>
       <div onClick={() => fetchPokemon()}>클릭 </div>
@@ -13,6 +11,7 @@ export default function home({ userList }: any) {
         console.log(element.name);
         <div>{element.name}</div>;
       })}
+      <div>업데이트 확인</div>
       <CounterContainer />
     </>
   );
@@ -23,7 +22,7 @@ export default function home({ userList }: any) {
 // 각 요청 때마다 호출
 // export async function getServerSideProps() {}
 const fetchPokemon = async () => {
-  const { data }: any = await axios.get("api");
+  const { data }: any = await axios.get("next/api");
   const userList = data;
   return {
     props: { userList }, // will be passed to the page component as props
