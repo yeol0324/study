@@ -22,7 +22,7 @@ export default function home({ userList }: any) {
 // 각 요청 때마다 호출
 // export async function getServerSideProps() {}
 const fetchPokemon = async () => {
-  const { data }: any = await axios.get("next/api");
+  const { data }: any = await axios.get("api");
   const userList = data;
   return {
     props: { userList }, // will be passed to the page component as props

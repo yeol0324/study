@@ -4,7 +4,7 @@ const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
 const repository = "next";
 const nextConfig = {
-  basePath: "/next",
+  // publicPath: "/next",
   reactStrictMode: true,
   images: {
     unoptimized: true,
@@ -19,14 +19,6 @@ const nextConfig = {
     process.env.NODE_ENV === "production"
       ? "https://yeol0324.github.io/next"
       : "",
-  async rewrites() {
-    return [
-      {
-        source: "/v1/:path*",
-        destination: "https://yeol0324.github.io/next/:path*",
-      },
-    ];
-  },
 };
 
 async function initialize() {
