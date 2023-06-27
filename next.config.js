@@ -4,6 +4,7 @@ const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
 const repository = "next";
 const nextConfig = {
+  basePath: "/next",
   reactStrictMode: true,
   images: {
     unoptimized: true,
