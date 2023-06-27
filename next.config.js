@@ -2,10 +2,11 @@
 
 const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
-
+const repository = "next";
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized: true,
     domains: [
       "www.notion.so",
       "images.unsplash.com",

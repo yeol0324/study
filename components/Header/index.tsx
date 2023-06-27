@@ -22,7 +22,6 @@ export default function Header() {
         <Link href="/HomePage">HomePage</Link>
         <Link href="/Login">Login</Link>
         <Link href="/Join">Join</Link>
-        <Link href="/Example">Example</Link>
         <div className={styles.rightContentMobile}>
           <div className={styles.profileContainer}></div>
         </div>

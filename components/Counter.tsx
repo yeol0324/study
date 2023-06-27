@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function Counter() {
   const dispatch = useDispatch();
-  const number = useSelector((state) => state.number);
+  const number = useSelector((state: any) => state.number);
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     switch (e.target.name) {
       case "div2":
         dispatch(ACTION.div_two());

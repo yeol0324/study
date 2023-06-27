@@ -21,7 +21,7 @@ export default async function getPokemonById(
   const pokemons = await db.all(`select * from pokemon`);
   if (req.method === "GET") {
     console.log(req);
-    const result = { data: pokemons };
+    const result: any = { data: pokemons };
     res.status(200).json(result);
   }
   if (req.method === "POST") {
@@ -31,11 +31,11 @@ export default async function getPokemonById(
           req.body.name
         }")`
       );
-      const result = { data: "ok" };
+      const result: any = { data: "ok" };
       res.status(200).json(result);
     } catch (error) {
       res.status(500);
-      res.send({ data: error });
+      // res.send({ data: error }); type error 잠시 주석
     }
   }
 }

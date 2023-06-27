@@ -7,7 +7,7 @@ const initialState = {
   number: 0,
 };
 
-function reducer(state, action) {
+function reducer(state: any, action: any) {
   switch (action.type) {
     case "counter/div_two":
       return { ...state, number: Math.floor(state.number / 2) };
