@@ -4,7 +4,7 @@ const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
 const repository = "next";
 const nextConfig = {
-  // publicPath: "/next",
+  publicPath: process.env.NODE_ENV === "production" ? "/next" : "",
   reactStrictMode: true,
   images: {
     unoptimized: true,
