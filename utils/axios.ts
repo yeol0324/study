@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from "axios";
 // const host
 const instance: AxiosInstance = axios.create({
-  baseURL: process.env.VUE_APP_BACKEND_BASE_URI,
+  baseURL: process.env.REACT_APP_BACKEND_BASE_URI,
   timeout: 3000,
   headers: {
     Authorization: "",

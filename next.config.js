@@ -3,8 +3,11 @@
 const sqlite3 = require("sqlite3");
 const sqlite = require("sqlite");
 const repository = "next";
+console.log(process.env.REACT_APP_NODE_ENV);
+// console.log(process.env);
 const nextConfig = {
-  publicPath: process.env.NODE_ENV === "production" ? "/next" : "",
+  basePath: process.env.REACT_APP_NODE_ENV === "production" ? "/next" : "",
+  publicPath: process.env.REACT_APP_NODE_ENV === "production" ? "/next" : "",
   reactStrictMode: true,
   images: {
     unoptimized: true,
@@ -16,11 +19,11 @@ const nextConfig = {
     format: ["image/png", "image/webp", "image/jpeg"],
   },
   assetPrefix:
-    process.env.NODE_ENV === "production"
+    process.env.REACT_APP_NODE_ENV === "production"
       ? "https://yeol0324.github.io/next"
       : "",
 };
-
+console.log(nextConfig.publicPath, "-------------------");
 async function initialize() {
   const db = await sqlite.open({
     filename: "./my-db.sqlite",
