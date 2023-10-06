@@ -1,0 +1,32 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "http://yeol0324.github.io/next",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start",
+    "lint": "next lint",
+    "deploy": "env-cmd -f .env.production next build && next export && touch out/.nojekyll && git add -f out/ && git commit -m 'commit' && git push origin --delete gh-pages && git subtree push --prefix out origin gh-pages"
+  },
+  "dependencies": {
+    "@types/node": "20.2.5",
+    "@types/react": "18.2.7",
+    "@types/react-dom": "18.2.4",
+    "axios": "^1.4.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "8.41.0",
+    "eslint-config-next": "13.4.4",
+    "next": "13.4.4",
+    "next-auth": "^4.22.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "^8.1.1",
+    "redux": "^4.2.1",
+    "sass": "^1.63.6",
+    "sqlite": "^4.2.1",
+    "sqlite3": "^5.1.6",
+    "typescript": "5.0.4"
+  }
+}
