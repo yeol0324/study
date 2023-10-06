@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            li {
+                list-style: none;
+            }
+            .file_list {
+            }
+        </style>
+    </head>
+
+    <body>
+        <form>
+            <div>
+                <input type="file" id="upload" webkitdirectory />
+            </div>
+            <div class="file_list"></div>
+        </form>
+        <select name="select" id="select">
+            <option value="all">전체</option>
+        </select>
+        <ul id="result"></ul>
+    </body>
+
+    <script>
+        const input = document.querySelector("input");
+        const preview = document.querySelector(".file_list");
+
+        let files = new Array();
+        let firstbox = new Array();
+        let select = document.querySelector("select");
+
+        input.addEventListener("change", showTextFile);
+
+        function showTextFile() {
+            files = input.files;
+
+            const list = document.createElement("ul");
+            preview.appendChild(list);
+
+            for (var file of files) {
+                firstbox.push(file.name.charAt(0));
+                const listItem = document.createElement("li");
+                listItem.textContent = file.name;
+                list.appendChild(listItem);
+            }
+
+            // 중복 값 제거
+            uniqueArr = [...new Set(firstbox)];
+
+            for (var i = 0; i < uniqueArr.length; i++) {
+                let select = document.querySelector("select");
+                let option = new Option();
+                option.value = uniqueArr[i];
+                select.appendChild(option);
+                option.innerHTML += uniqueArr[i];
+            }
+        }
+
+        select.addEventListener("change", showSelectBox);
+
+        function showSelectBox() {
+            files = input.files;
+            const result = document.getElementById("result");
+            let val = select.options[select.selectedIndex].value;
+
+            // result 데이터 초기화
+            while (result.hasChildNodes()) {
+                result.removeChild(result.firstChild);
+            }
+
+            // option 값 == 파일명
+            for (var i = 0; i < files.length; i++) {
+                let first_char = files[i].name.charAt(0);
+
+                if (val == first_char) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = files[i].name;
+                    result.appendChild(listItem);
+                    const img = document.createElement("img");
+                    img.setAttribute("src", "./img/" + files[i].name);
+                    result.appendChild(img);
+                }
+            }
+        }
+    </script>
+</html>

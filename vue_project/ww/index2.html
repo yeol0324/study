@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <style>
+            li {
+                list-style: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button>button</button>
+        <button onclick="showTextFile()">files</button>
+        <ul class="list"></ul>
+        <select name="select" id="select">
+            <option value="all">전체</option>
+        </select>
+        <ul id="result"></ul>
+    </body>
+
+    <script>
+        let button = document.querySelector("button");
+        var el = document.createElement("el");
+        let files = new Array();
+        let imgNames = new Array();
+        let filesname;
+
+        button.addEventListener("click", test);
+
+        var x = new XMLHttpRequest();
+        x.open("GET", "https://yeol0324.github.io/vueProject/ww/img.html"); //데이터를 로드해올 URL
+        x.send();
+
+        function test() {
+            if (x.readyState == "4") {
+                let i;
+
+                el.innerHTML = x.responseText; // el 엘리먼트 안에 아까 x가 받아온 respontext삽입.
+                console.log(el);
+
+                var img = el.querySelector("img");
+
+                console.log(img.getAttribute("src"));
+
+                for (i = 0; i < el.querySelectorAll("img").length; i++) {
+                    files.push(el.querySelectorAll("img")[i].getAttribute("src"));
+                }
+                console.log(files);
+                for (file of files) {
+                    filesname = file.split("/");
+                    imgNames.push(filesname[filesname.length - 1]);
+                    // 이미지 파일명
+                    console.log(imgNames);
+                }
+            }
+        }
+
+        // 파일 첫번째 이름 가져와서 중복 제거해서 보여주기
+        let firstbox = new Array();
+
+        function showTextFile() {
+            const preview = document.querySelector(".list");
+            const list = document.createElement("ul");
+            preview.appendChild(list);
+
+            for (var imgName of imgNames) {
+                const listItem = document.createElement("li");
+                listItem.textContent = imgName;
+                list.appendChild(listItem);
+                // 첫번째 글자 따오기
+                firstbox.push(imgName.charAt(0));
+            }
+
+            // 중복 값 제거
+            uniqueArr = [...new Set(firstbox)];
+
+            for (var i = 0; i < uniqueArr.length; i++) {
+                let select = document.querySelector("select");
+                let option = new Option();
+                option.value = uniqueArr[i];
+                select.appendChild(option);
+                option.innerHTML += uniqueArr[i];
+            }
+        }
+
+        let select = document.querySelector("select");
+        // selectbox 선택 시 맞는 데이터 보이기
+        select.addEventListener("change", showSelectBox);
+
+        function showSelectBox() {
+            console.log(files);
+            // selectbox 선택 값
+            let val = select.options[select.selectedIndex].value;
+            const result = document.getElementById("result");
+
+            // result 데이터 초기화
+            while (result.hasChildNodes()) {
+                result.removeChild(result.firstChild);
+            }
+
+            for (var i = 0; i < imgNames.length; i++) {
+                let first_char = imgNames[i].charAt(0);
+                if (val == first_char) {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = imgNames[i];
+                    result.appendChild(listItem);
+                    const img = document.createElement("img");
+                    img.setAttribute("src", files[i]);
+                    result.appendChild(img);
+                }
+            }
+        }
+    </script>
+</html>

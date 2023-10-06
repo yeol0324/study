@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // continue 사용으로 짝수인 숫자만 나오게
+        for (let i = 0; i < 11; i++) {
+            if (i%2 === 0) {
+                console.log(`qi. ${i}`);
+            };
+        }
+        // 0~10까지 루핑, 8 만나면 멈추게
+        for ( let i = 0; i < 11; i++ ) {
+            if ( i > 8) {
+                break;
+            };
+            console.log(`q2. ${i}`);
+        }
+        function calculate (command, a, b) {
+            switch (command) {
+                case 'add':
+                    return a + b;
+                case 'substract':
+                    return a - b;
+                default:
+                    throw Error('unkonwn command');
+            }
+        }
+        console.log(calculate('add',2,3));
+
+        const fruits = ['🥝','🍎','🥭','🍌'];
+        for ( let i = 0; i < fruits.length; i++) {
+            console.log(fruits[i]);
+        }
+        for ( let fruit of fruits) {
+            console.log(fruit);
+        }
+        fruits.push('🍓','🍒','🍑');
+        console.log(fruits);
+        fruits.forEach((fruit) => console.log(fruit));
+
+        // Q1. make a string out of an array
+{
+  const fruits = ['apple', 'banana', 'orange'];
+  fruits.forEach((fruit) => console.log(fruit));
+  const result = fruits.join();
+  console.log(result);
+}
+// Q2. make an array out of a string
+{
+  const fruits = '🍎, 🥝, 🍌, 🍒';
+}
+
+    </script>
+</body>
+</html>
